@@ -476,7 +476,7 @@ type  | true  | string  | Dimension, market data type
 dimension (lowercase automatically converts to uppercase)
 
 Value  | Caption
-------------- | ------------- | -------------
+------------- | -------------
 ONE_MINUTE  | 1 minutes
 FIVE_MINUTE  | 5 minutes
 FIFTEEN_MINUTE  | 15 minutes
