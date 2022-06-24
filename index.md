@@ -64,3 +64,129 @@ success: true
 }
 
 ```
+
+Return parameter description
+
+Parameter  | Type | caption
+------------- | ------------- | -------------
+code  | int | Return code 1: Response value 1 indicates success, other values ​​indicate failure
+data  | jsonObject | business data, json object
+message  | string | Return code description success
+success  | boolean | true=success, false=failure true
+
+
+# 2. User related
+
+## 2.1. Get personal balance
+
+[TOC]
+
+A brief description
+
+- Get personal balance
+
+** request URL
+
+/account/query/coin-account
+request method
+
+
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+coinName  | true  | string  | Currency name :USDT,BTC
+
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+accountType  | true  | string  | account type
+
+
+Parameter  | caption
+------------- | -------------
+1  | Exchange Account
+2  | Fiat Account
+3  | Isolate-M
+4  | USDⓈ-M
+
+
+Return the sample
+
+```markdown
+
+{
+code: 1,
+data: {coinName: "ETH", accountType: 1, amount: 15, frozenAmount: 20},
+message: "success",
+success: true
+}
+
+```
+
+
+Return parameter description
+
+Parameter  | Type  | caption
+------------- | ------------- | -------------
+amount  | string  | Available Balance
+frozenAmount  | string  | Frozen Balance
+
+# 3. Order Api
+
+## 3.1、 Order Api
+
+[TOC]
+
+** A brief description
+
+- Single order Api
+
+** request URL
+
+/order/add/market-user-entrust
+
+** request method
+
+post
+
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+type  | true  | string  | string
+orderType  | true  | string  | Order type: 1 limit price, 2 market price
+coinMarket  | true  | string  | trading pair name
+amount  | true  | BigDecimal  | number of orders
+type  | true  | string  | string
+price  | true  | BigDecimal  | Order price
+userId  | true  | int  | User ID
+uid  | true  | int  | User ID
+
+Return the sample
+
+```markdown
+
+{
+code: 1,
+data: {"78764432"},
+message: "success",
+success: true
+}
+
+```
+
+Remark
+
+data is the order number entrustNo
+
+## 3.2. Batch order API
+
+[TOC]
+
+** A brief description
+
+Quantity - batch order API, now the quantity is within 15 each time < quantity
+
+** request URL
+
+/order/add/market-user-entrusts
+
+** request method
+
+Example of post request parameters
