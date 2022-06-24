@@ -135,15 +135,15 @@ frozenAmount  | string  | Frozen Balance
 
 [TOC]
 
-** A brief description **
+**A brief description**
 
 - Single order Api
 
-** request URL **
+**request URL**
 
 /order/add/market-user-entrust
 
-** request method **
+**request method**
 
 post
 
@@ -179,14 +179,14 @@ data is the order number entrustNo
 
 [TOC]
 
-** A brief description **
+**A brief description**
 
 Quantity - batch order API, now the quantity is within 15 each time < quantity
 
-** request URL **
+**request URL**
 
 /order/add/market-user-entrusts
 
-** request method **
+**request method**
 
 Example of post request parameters
