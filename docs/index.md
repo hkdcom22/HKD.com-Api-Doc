@@ -1,37 +1,66 @@
-## Welcome to GitHub Pages
+## Global API Description
 
-You can use the [editor on GitHub](https://github.com/hkdcom22/HKD.com-Api-Doc/edit/gh-pages/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Signature description
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The request parameters are sorted and spliced ​​together in ascending dictionary order (the timestamp should also be added to verify the signature), and the string to be signed is generated. All parameters have values:
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
 Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+appKey=wehmslauewe&time=1594468475403&phone=13587690001&symbol=2
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Generate the string to be signed & the private key parameters (agreed) to generate the final string to be signed. For example, the private key is: xsdlkfjs2234dskl32kjoj, splicing it at the end of the string, the generated string format is: All parameters have value:
 
-### Jekyll Themes
+```markdown
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hkdcom22/HKD.com-Api-Doc/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+appKey=wehmslauewe&phone=13587690001&symbol=2&time=1594468475403&appSecretKey=xsdlkfjs2234dskl32kjoj One or more parameters have no value:
 
-### Support or Contact
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```markdown
+
+appKey=wehmslauewe&phone=13587690001&symbol=2&email=&symbol=2&time=1594468475403&appSecretKey=xsdlkfjs2234dskl32kjoj
+
+```
+
+```markdown
+
+Assign this value to the signature parameter signature, and then put the signature in the request header. Note: For the following parameters to sign, please note: please remove the invalid 0 in the incoming parameters, such as coin_amount = 100, please do not pass in 100.00 for signature verification, generate a signature for the parameters according to the signature rules, and compare it with the signature in the request header, If they are consistent, the signature is passed.
+
+```
+
+### Description of all API requests
+
+Request address:https://www.hkd.com/api
+
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+channel  | true  | int  | Fill in 5, representing API_USER (api user)
+time  | true  | long  | Fill in 5, representing API_USER (api user)
+Timestamp when the merchant initiates the request, Beijing time UTC+8  | true  | string  | sign
+api-version  | true  | string  | API version number, default v1
+
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+channel  | true  | int  | Fill in 5, representing API_USER (api user)
+
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+Fill in 5, representing API_USER (api user)  | true  | ...  | ...
+
+
+Return the sample
+
+```markdown
+
+{
+code: 1,
+data: {...},
+message: "success",
+success: true
+}
+
+```
