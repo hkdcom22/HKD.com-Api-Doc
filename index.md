@@ -32,10 +32,35 @@ Assign this value to the signature parameter signature, and then put the signatu
 
 ```
 
-### Jekyll Themes
+### Description of all API requests
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hkdcom22/HKD.com-Api-Doc/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Request address:https://www.hkd.com/api
 
-### Support or Contact
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+channel  | true  | int  | Fill in 5, representing API_USER (api user)
+time  | true  | long  | Fill in 5, representing API_USER (api user)
+Timestamp when the merchant initiates the request, Beijing time UTC+8  | true  | string  | sign
+api-version  | true  | string  | API version number, default v1
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+channel  | true  | int  | Fill in 5, representing API_USER (api user)
+
+Parameter  | required  | Type  | caption
+------------- | ------------- | ------------- | -------------
+Fill in 5, representing API_USER (api user)  | true  | ...  | ...
+
+
+Return the sample
+
+```markdown
+
+{
+code: 1,
+data: {...},
+message: "success",
+success: true
+}
+
+```
