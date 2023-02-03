@@ -1,9 +1,8 @@
-## Global API Description
+## HKDcom API Description
+HKD.com API documentation provides guidance to help you access HKD.com’s endpoints, their expected outputs, and common errors. For further assistance or feedback, please email us at tech@hkd.com
 
-Signature description
-
-The request parameters are sorted and spliced ​​together in ascending dictionary order (the timestamp should also be added to verify the signature), and the string to be signed is generated. All parameters have values:
-
+**Signature Description**
+The request parameters are sorted and spliced together in ascending dictionary order (the timestamp should also be added to verify the signature), and the string to be signed is generated. All parameters have values:
 
 ```markdown
 Syntax highlighted code block
@@ -25,129 +24,104 @@ appKey=wehmslauewe&phone=13587690001&symbol=2&time=1594468475403&appSecretKey=xs
 appKey=wehmslauewe&phone=13587690001&symbol=2&email=&symbol=2&time=1594468475403&appSecretKey=xsdlkfjs2234dskl32kjoj
 
 ```
-
-```markdown
-
 Assign this value to the signature parameter signature, and then put the signature in the request header. Note: For the following parameters to sign, please note: please remove the invalid 0 in the incoming parameters, such as coin_amount = 100, please do not pass in 100.00 for signature verification, generate a signature for the parameters according to the signature rules, and compare it with the signature in the request header, If they are consistent, the signature is passed.
-
-```
 
 ### Description of all API requests
 
-Request address:https://www.hkd.com/api
+**HTTP Request:** https://www.hkd.com/api
 
-Parameter  | required  | Type  | caption
+**Request Parameters**
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 channel  | true  | int  | Fill in 5, representing API_USER (api user)
 time  | true  | long  | Fill in 5, representing API_USER (api user)
-Timestamp when the merchant initiates the request, Beijing time UTC+8  | true  | string  | sign
+Timestamp when the merchant initiates the request, Hong Kong time UTC+8  | true  | string  | sign
 api-version  | true  | string  | API version number, default v1
 
-Parameter  | required  | Type  | caption
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 channel  | true  | int  | Fill in 5, representing API_USER (api user)
 
-Parameter  | required  | Type  | caption
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 Fill in 5, representing API_USER (api user)  | true  | ...  | ...
 
 
-Return the sample
+**Response Example**
 
 ```markdown
-
 {
 code: 1,
 data: {...},
 message: "success",
 success: true
 }
-
 ```
 
-Return parameter description
+**Response Parameters**
 
-Parameter  | Type | caption
+Parameter  | Type | Comment
 ------------- | ------------- | -------------
 code  | int | Return code 1: Response value 1 indicates success, other values ​​indicate failure
 data  | jsonObject | business data, json object
 message  | string | Return code description success
-success  | boolean | true=success, false=failure true
+success  | boolean | true=success, false=failure
 
 
-# 2. User related
+# 2. Account Data Endpoints
 
-## 2.1. Get personal balance
+## 2.1. Get Account Balance
 
-[TOC]
-
-A brief description
-
+**Description**
 - Get personal balance
 
-** request URL
+**HTTP Request:** /account/query/coin-account
+**Request Method:** POST
 
-/account/query/coin-account
-request method
-
-
-Parameter  | required  | Type  | caption
+**Request Parameters**
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
-coinName  | true  | string  | Currency name :USDT,BTC
+coinName  | true  | string  | Currency name: USDT, BTC
 
-Parameter  | required  | Type  | caption
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 accountType  | true  | string  | account type
 
 
-Parameter  | caption
+Parameter  | Comment
 ------------- | -------------
 1  | Exchange Account
 2  | Fiat Account
 3  | Isolate-M
 4  | USDⓈ-M
 
-
-Return the sample
-
+**Response Example**
 ```markdown
-
 {
 code: 1,
 data: {coinName: "ETH", accountType: 1, amount: 15, frozenAmount: 20},
 message: "success",
 success: true
 }
-
 ```
-
-
-Return parameter description
-
-Parameter  | Type  | caption
+**Response Parameters**
+Parameter  | Type  | Comment
 ------------- | ------------- | -------------
 amount  | string  | Available Balance
 frozenAmount  | string  | Frozen Balance
 
-# 3. Order Api
+# 3. Ordering Endpoints
 
-## 3.1、 Order Api
+## 3.1. Order Api
+**Description**
+- Single order API
 
-[TOC]
+**HTTP Request:** /order/add/market-user-entrust
 
-**A brief description**
+**Request Method:** POST
 
-- Single order Api
-
-**request URL**
-
-/order/add/market-user-entrust
-
-**request method**
-
-post
-
-Parameter  | required  | Type  | caption
+**Request Parameters**
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 type  | true  | string  | string
 orderType  | true  | string  | Order type: 1 limit price, 2 market price
@@ -158,36 +132,23 @@ price  | true  | BigDecimal  | Order price
 userId  | true  | int  | User ID
 uid  | true  | int  | User ID
 
-Return the sample
-
+**Response Example**
 ```markdown
-
 {
 code: 1,
 data: {"78764432"},
 message: "success",
 success: true
 }
-
 ```
 
-Remark
+## 3.2. Batch Ordering API
 
-data is the order number entrustNo
-
-## 3.2. Batch order API
-
-[TOC]
-
-**A brief description**
-
+**Description**
 Quantity - batch order API, now the quantity is within 15 each time < quantity
 
-**request URL**
-
-/order/add/market-user-entrusts
-
-**request method**
+**HTTP Request:** /order/add/market-user-entrusts
+**Request Method:** POST
 
 Example of post request parameters
 
@@ -202,10 +163,10 @@ entrustVos: [{ Single Order Parameter },{...}]
 
 ```
 
-Parameters
+**Request Parameters**
 
 
-Parameter  | required  | Type  | caption
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 type  | true  | string  | Order direction: 1 buy, 2 sell
 orderType  | true  | string  | Order type: 1 limit price, 2 market price
@@ -216,56 +177,44 @@ userId  | true  | int  | User ID
 uid  | true  | int  | User ID
 
 
-Return the sample
-
+**Response Example**
 ```markdown
-
 {
     code: 1,
     data: {"78764432","78764431",...},
     message: "success",
     success: true
 }
-
 ```
 
-## 3.3. List of pending orders for users
-[TOC]
+## 3.3. List of Pending Orders for Users
 
-**A brief description**
+**Description**
 
-- User"s pending order list
+- User's pending order list
 
-**request URL**
+**HTTP Request:** /order/market-user-entrust-list
+**Request Method:** POST
 
-/order/market-user-entrust-list
-
-**request method**
-
-- post
-
-Parameter  | required  | Type  | caption
+**Request Parameters**
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 type  | true  | string  | Order direction: 1 buy, 2 sell
 coinMarket  | true  | string  | trading pair name
 userId  | true  | int  | User ID
 
-Return the sample
-
+**Response Example**
 ```markdown
-
 {
     code: 1,
     data: {78764432},
     message: "success",
     success: true
 }
-
 ```
 
-Return parameter description
-
-Parameter  | Type  | caption
+**Response Parameters**
+Parameter  | Type  | Comment
 ------------- | ------------- | -------------
 id  | int  | Return code description success
 id  | string  | id
@@ -284,22 +233,16 @@ averagePrice  | string  | Average transaction price
 createTime  | string  | Creation time
 
 
-## 3.4、Paging query order transaction details
-[TOC]
+## 3.4. Page Query Order Transaction Details
 
-**A brief description**
-
+**Description**
 - Paging query order transaction details
 
-**request URL**
+**HTTP Request:** /order/market-entrust-detail-page
+**Request Method:** POST
 
-/order/market-entrust-detail-page
-
-**request method**
-
-post
-
-Parameter  | required  | Type  | caption
+**Request Parameters**
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 pageNum  | true  | string  | request parameters
 pageSize  | true  | string  | page number
@@ -307,18 +250,15 @@ entrustNo  | true  | String  | records per page
 
 
 ```markdown
-
 {
     code: 1,
     data: { Back to Parameter },
     message: "success",
     success: true
 }
-
 ```
-Return parameter description
-
-Parameter  | Type  | caption
+**Response Parameters**
+Parameter  | Type  | Comment
 ------------- | ------------- | -------------
 dealNo  | string  | Transaction number
 amount  | string  | The number of transactions
@@ -334,77 +274,56 @@ coinMarket  | string  | Trading pair name
 creation time  | string  | creation time
 
 
-## 3.5, long distance single interface
-[TOC]
+## 3.5. Long Distance Single Interface
 
-**A brief description**
+**Description**
 
 - Batch cancellation interface, it is recommended to operate a single order
 
-**request URL**
+**HTTP Request:** /order/add/market-user-entrusts
+**Request Method:** POST
 
-/order/add/market-user-entrusts
-
-**request method**
-
+**Request Parameters**
 ```markdown
-
-Example of post request parameters
 {
 ...,
 cancelEntrustList:[{entrustNo:"683948239"},...]
 }
 ```
-
-
-Parameter  | required  | Type  | caption
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 entrustNo  | true  | string  | Order number
 
 
-Return the sample
+**Response Example**
 
 ```markdown
-
 {
     code: 1,
     data: {},
     message: "success",
     success: true
 }
-
 ```
 
 Remark
 
-## 3.6. Paging query user history orders
-[TOC]
+## 3.6. Page Query User Order History
+**Description**
+- User order history
 
-**Brief description**
+**HTTP Request:** /order/entrust-history-pagination
+**Request Method:** POST
 
-- Paging query user history orders
-
-**Request URL**
-
-/order/entrust-history-pagination
-
-**Request method**
-
-post
-
-**parameter**   
-
-
-Parameter  | required  | Type  | caption
+**Request Parameters**  
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 type  | true  | string  | 	Order direction: 1 buy, 2 sell
 coinMarket  | true  | string  | trading pair name
 userId  | true  | int  | User ID
 
-Return the sample
-
+**Response Example**
 ```markdown
-
 {
     "code":1,
     "message":"success",
@@ -418,12 +337,11 @@ Return the sample
     "pages":0},
     "success":true
 }
-
 ```
 
-Return parameter description
+**Response Parameters**
 
-Parameter  | Type  | caption
+Parameter  | Type  | Comment
 ------------- | ------------- | -------------
 id  | string  | id
 type  | string  | Order direction: 1 buy, 2 sell
@@ -448,34 +366,24 @@ entrustFee  | string  | Order price
 updateTime  | string  | Update time
 createTime  | string  | Creation time
 
-
-# 4. Quote interface
+# 4. Quote Interface
 ## 4.1. Get Quotes
 
-[TOC]
+**Description**
+- Get Quotes
 
-**Brief description**
+**Request URL:** /market/kLine
+**Request Method:** POST
 
-Get Quotes
-
-**Request URL**
-
-/market/kLine
-
-**Request method**
-
-post
-
-parameter
-
-Parameter  | required  | Type  | caption
+**Request Parameters**
+Parameter  | required  | Type  | Comment
 ------------- | ------------- | ------------- | -------------
 coinMarket  | true  | string  | Pair
-type  | true  | string  | Dimension, market data type
+type  | true  | string  | Interval
 
-dimension (lowercase automatically converts to uppercase)
+Interval Value (lowercase/uppercase)
 
-Value  | Caption
+Value  | Comment
 ------------- | -------------
 ONE_MINUTE  | 1 minutes
 FIVE_MINUTE  | 5 minutes
@@ -487,18 +395,14 @@ ONE_DAY  | 1 day
 ONE_WEEK  | One week
 ONE_MONTH  | One month
 
-Example of post request parameters
+**Request Example**
 
 ```markdown
-
-{coinMarket: "BTC/USDT", dimension: "one_minute"}
-
+{coinMarket: "BTC/USDT", type: "one_minute"}
 ```
 
-Return the sample
-
+**Response Example**
 ```markdown
-
 {
     code:1
     message:" success ",
@@ -516,10 +420,10 @@ Return the sample
     turnover: 605233.18},...],
     success:true
 }
-
 ```
 
-Parameter  | Type  | caption
+**Response Parameters**
+Parameter  | Type  | Comment
 ------------- | ------------- | -------------
 amount  | string  | Volume
 close  | string  | Close price
@@ -532,3 +436,519 @@ rangeAbility  | string  | different width
 rangeAbilityAmount  | string  | Price width
 Time  | string  | Time
 Turnover  | string  | Transaction value
+
+# 5. Market Data
+## 5.1. Market Data Summary
+
+**Description**
+- The summary endpoint is to provide an overview of market data for all tickers and all market pairs on the exchange.
+
+**Request URL:** /market/summary
+
+**Request Method:** POST
+
+**Response Example**
+
+```markdown
+{
+    "code": 1,
+    "message": "success",
+    "data": [
+        {
+            "trading_pairs": "BTC_USDT",
+            "last_price": "23793.73",
+            "base_volume": "1371.276427",
+            "target_volume": "0.8055245229432614",
+            "highest_bid": "23793.73",
+            "lowest_ask": "23793.73",
+            "highest_price_24h": "24226.01",
+            "lowest_price_24h": "22807.09",
+            "price_change_percent_24h": "811.130000"
+        },
+        {
+            "trading_pairs": "ETH_USDT",
+            "last_price": "1668.38",
+            "base_volume": "1498.4312",
+            "target_volume": "48923086.32",
+            "highest_bid": "1668.38",
+            "lowest_ask": "1668.38",
+            "highest_price_24h": "1694.43",
+            "lowest_price_24h": "1559.56",
+            "price_change_percent_24h": "92.8400"
+        }
+    ],
+    "success": true
+}
+```
+**Response Parameters**
+Parameter  | Type
+------------- |  -------------
+code  | int  
+message  | string
+data  | array  
+trading_pairs  | string  
+last_price  | string  
+base_volume  | string 
+target_volume  | string  
+highest_bid  | string 
+lowest_ask  | string
+highest_price_24h  | string  
+lowest_price_24h   | string
+price_change_percent_24h   | string
+success   | boolen
+
+## 5.2. Assets
+
+**Description**
+- The assets endpoint is to provide a detailed summary for each currency available on the exchange.
+
+**Request URL:** /market/assets
+
+**Request Method:** POST
+
+**Response Example**
+
+```markdown
+{
+    "code": 1,
+    "message": "success",
+    "data": {
+        "FIL": {
+            "name": "filecoin",
+            "unified_cryptoasset_id": null,
+            "can_withdraw": "true",
+            "can_deposit": "false",
+            "min_withdraw": "0.2000000000000000",
+            "max_withdraw": "10000.0000000000000000",
+            "maker_fee": "0.1",
+            "taker_fee": "0.1"
+        },
+        "EOS": {
+            "name": "eos20",
+            "unified_cryptoasset_id": null,
+            "can_withdraw": "true",
+            "can_deposit": "false",
+            "min_withdraw": "1.0000000000000000",
+            "max_withdraw": "10000.0000000000000000",
+            "maker_fee": "0.2",
+            "taker_fee": "0.2"
+        }
+    },
+    "success": true
+}
+```
+**Response Parameters**
+Parameter  | Type
+------------- |  -------------
+code  | int  
+message  | string
+data  | Json Object  
+name  | string  
+unified_cryptoasset_id  | int  
+can_withdraw  | string 
+can_deposit  | string  
+min_withdraw  | string 
+max_withdraw  | string
+maker_fee  | string  
+taker_fee   | string
+success   | boolen
+
+## 5.3. Tickers
+
+**Description**
+- The ticker endpoint is to provide a 24-hour pricing and volume summary for each market pair available on the exchange.
+
+**Request URL:** /market/v2/ticker
+
+**Request Method:** POST
+
+**Response Example**
+
+```markdown
+{
+    "code": 1,
+    "message": "success",
+    "data": {
+        "EOS_USDT": {
+            "base_id": null,
+            "quote_id": null,
+            "base_volume": "0",
+            "target_volume": "0",
+            "last_price": "28.5560",
+            "isFrozen": "0"
+        },
+        "ETH_USDT": {
+            "base_id": null,
+            "quote_id": null,
+            "base_volume": "1505.1480",
+            "target_volume": "49146827.95",
+            "last_price": "1666.18",
+            "isFrozen": "0"
+        }
+    },
+    "success": true
+}
+```
+**Response Parameters**
+Parameter  | Type
+------------- |  -------------
+code  | int  
+message  | string
+data  | Json Object  
+base_id | int
+quote_id | int
+base_volume | string
+target_volume | string
+last_price | string
+isFrozen | string
+success   | boolen
+
+## 5.4. Order Book
+
+**Description**
+- The order book endpoint is to provide a complete order book (arranged by best asks/bids) with full depth returned for a given market pair.
+
+**Request URL:** /market/orderbook/market_pair
+
+**Request Method:** POST
+
+**Request Parameters**
+Parameter  | Type
+------------- |  -------------
+market_pair  | string  
+
+**Request Example**
+```markdown
+{
+    "market_pair": "BTC_USDT"
+}
+```
+
+**Response Example**
+
+```markdown
+{
+    "code": 1,
+    "message": "success",
+    "data": {
+        "bids": [
+            [
+                "23799.29",
+                "1.500000"
+            ],
+            [
+                "23799.27",
+                "1.500000"
+            ],
+            [
+                "23799.26",
+                "1.000000"
+            ],
+            [
+                "23799.25",
+                "2.500000"
+            ],
+            [
+                "23792.89",
+                "1.500000"
+            ],
+            [
+                "23792.83",
+                "0.500000"
+            ],
+            [
+                "23792.17",
+                "2.500000"
+            ],
+            [
+                "23790.57",
+                "1.000000"
+            ],
+            [
+                "23790.28",
+                "1.500000"
+            ],
+            [
+                "23789.87",
+                "2.000000"
+            ],
+            [
+                "23789.86",
+                "2.500000"
+            ],
+            [
+                "23789.85",
+                "2.500000"
+            ],
+            [
+                "23788.80",
+                "0.500000"
+            ],
+            [
+                "23788.69",
+                "2.000000"
+            ],
+            [
+                "23787.85",
+                "2.500000"
+            ],
+            [
+                "23787.70",
+                "1.000000"
+            ],
+            [
+                "23786.51",
+                "0.500000"
+            ],
+            [
+                "23786.45",
+                "0.500000"
+            ],
+            [
+                "23783.60",
+                "1.500000"
+            ],
+            [
+                "23783.47",
+                "2.500000"
+            ],
+            [
+                "23783.46",
+                "2.500000"
+            ],
+            [
+                "23783.39",
+                "2.500000"
+            ],
+            [
+                "23780.45",
+                "1.500000"
+            ],
+            [
+                "23778.01",
+                "1.000000"
+            ],
+            [
+                "23776.70",
+                "2.500000"
+            ],
+            [
+                "23776.61",
+                "2.500000"
+            ],
+            [
+                "23776.30",
+                "2.500000"
+            ],
+            [
+                "23776.25",
+                "2.500000"
+            ],
+            [
+                "23773.70",
+                "2.000000"
+            ],
+            [
+                "23773.57",
+                "0.500000"
+            ]
+        ],
+        "asks": [
+            [
+                "23799.30",
+                "1.500000"
+            ],
+            [
+                "23801.35",
+                "0.500000"
+            ],
+            [
+                "23801.37",
+                "1.000000"
+            ],
+            [
+                "23803.05",
+                "0.500000"
+            ],
+            [
+                "23803.06",
+                "0.500000"
+            ],
+            [
+                "23803.08",
+                "0.500000"
+            ],
+            [
+                "23803.09",
+                "1.500000"
+            ],
+            [
+                "23803.10",
+                "1.500000"
+            ],
+            [
+                "23806.06",
+                "1.000000"
+            ],
+            [
+                "23806.75",
+                "0.500000"
+            ],
+            [
+                "23806.80",
+                "0.500000"
+            ],
+            [
+                "23806.81",
+                "0.500000"
+            ],
+            [
+                "23806.82",
+                "0.500000"
+            ],
+            [
+                "23806.83",
+                "0.500000"
+            ],
+            [
+                "23806.84",
+                "2.000000"
+            ],
+            [
+                "23808.02",
+                "0.500000"
+            ],
+            [
+                "23808.62",
+                "0.500000"
+            ],
+            [
+                "23808.63",
+                "0.500000"
+            ],
+            [
+                "23808.64",
+                "0.500000"
+            ],
+            [
+                "23808.66",
+                "2.500000"
+            ],
+            [
+                "23809.10",
+                "2.500000"
+            ],
+            [
+                "23809.30",
+                "2.500000"
+            ],
+            [
+                "23809.57",
+                "2.500000"
+            ],
+            [
+                "23809.72",
+                "1.000000"
+            ],
+            [
+                "23810.58",
+                "0.500000"
+            ],
+            [
+                "23810.87",
+                "1.000000"
+            ],
+            [
+                "23811.00",
+                "2.500000"
+            ],
+            [
+                "23811.09",
+                "3.000000"
+            ],
+            [
+                "23811.19",
+                "1.000000"
+            ],
+            [
+                "23811.20",
+                "0.500000"
+            ]
+        ],
+        "timestamp": 1675321704527
+    },
+    "success": true
+}
+```
+**Response Parameters**
+Parameter  | Type
+------------- |  -------------
+code  | int  
+message  | string
+data  | Json Object  
+bids | array
+asks | array
+timestamp | int
+success   | boolen
+
+## 5.5. Trades
+
+**Description**
+- The trades endpoint is to return data on all recently completed trades for a given market pair.
+
+**Request URL:** /market/trades/market_pair
+
+**Request Method:** POST
+
+**Request Parameters**
+Parameter  | Type
+------------- |  -------------
+market_pair  | string  
+
+**Request Example**
+```markdown
+{
+    "market_pair": "BTC_USDT"
+}
+```
+
+**Response Example**
+
+```markdown
+{
+    "code": 1,
+    "message": "scussess",
+    "data": [
+        {
+            "trade_id": "4",
+            "price": "23809.85",
+            "timestamp": 1675321946,
+            "type": "sell",
+            "base_volume": "0.500000",
+            "target_volume": "11904.925000"
+        },
+        {
+            "trade_id": "4",
+            "price": "23809.85",
+            "timestamp": 1675321936,
+            "type": "buy",
+            "base_volume": "0.500000",
+            "target_volume": "11904.925000"
+        }
+    ],
+    "success": true
+}
+```
+**Response Parameters**
+Parameter  | Type
+------------- |  -------------
+code  | int  
+message  | string
+data  | Json Object  
+trade_id | string
+price | string
+timestamp | int
+type | string
+base_volume | string
+target_volume | string
+success   | boolen
