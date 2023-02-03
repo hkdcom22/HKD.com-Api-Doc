@@ -458,7 +458,7 @@ Turnover  | string  | Transaction value
             "trading_pairs": "BTC_USDT",
             "last_price": "23793.73",
             "base_volume": "1371.276427",
-            "target_volume": "0.8055245229432614",
+            "quote_volume": "0.8055245229432614",
             "highest_bid": "23793.73",
             "lowest_ask": "23793.73",
             "highest_price_24h": "24226.01",
@@ -469,7 +469,7 @@ Turnover  | string  | Transaction value
             "trading_pairs": "ETH_USDT",
             "last_price": "1668.38",
             "base_volume": "1498.4312",
-            "target_volume": "48923086.32",
+            "quote_volume": "48923086.32",
             "highest_bid": "1668.38",
             "lowest_ask": "1668.38",
             "highest_price_24h": "1694.43",
@@ -489,7 +489,7 @@ data  | array
 trading_pairs  | string  
 last_price  | string  
 base_volume  | string 
-target_volume  | string  
+quote_volume  | string  
 highest_bid  | string 
 lowest_ask  | string
 highest_price_24h  | string  
@@ -569,19 +569,19 @@ success   | boolen
     "code": 1,
     "message": "success",
     "data": {
-        "EOS_USDT": {
+        "BTC_USDT": {
             "base_id": null,
             "quote_id": null,
-            "base_volume": "0",
-            "target_volume": "0",
-            "last_price": "28.5560",
+            "base_volume": "1434.071094",
+            "quote_volume": "33939184.831000",
+            "last_price": "23419.11",
             "isFrozen": "0"
         },
         "ETH_USDT": {
             "base_id": null,
             "quote_id": null,
             "base_volume": "1505.1480",
-            "target_volume": "49146827.95",
+            "quote_volume": "49146827.95",
             "last_price": "1666.18",
             "isFrozen": "0"
         }
@@ -598,7 +598,7 @@ data  | Json Object
 base_id | int
 quote_id | int
 base_volume | string
-target_volume | string
+quote_volume | string
 last_price | string
 isFrozen | string
 success   | boolen
@@ -651,106 +651,6 @@ market_pair  | string
             [
                 "23792.89",
                 "1.500000"
-            ],
-            [
-                "23792.83",
-                "0.500000"
-            ],
-            [
-                "23792.17",
-                "2.500000"
-            ],
-            [
-                "23790.57",
-                "1.000000"
-            ],
-            [
-                "23790.28",
-                "1.500000"
-            ],
-            [
-                "23789.87",
-                "2.000000"
-            ],
-            [
-                "23789.86",
-                "2.500000"
-            ],
-            [
-                "23789.85",
-                "2.500000"
-            ],
-            [
-                "23788.80",
-                "0.500000"
-            ],
-            [
-                "23788.69",
-                "2.000000"
-            ],
-            [
-                "23787.85",
-                "2.500000"
-            ],
-            [
-                "23787.70",
-                "1.000000"
-            ],
-            [
-                "23786.51",
-                "0.500000"
-            ],
-            [
-                "23786.45",
-                "0.500000"
-            ],
-            [
-                "23783.60",
-                "1.500000"
-            ],
-            [
-                "23783.47",
-                "2.500000"
-            ],
-            [
-                "23783.46",
-                "2.500000"
-            ],
-            [
-                "23783.39",
-                "2.500000"
-            ],
-            [
-                "23780.45",
-                "1.500000"
-            ],
-            [
-                "23778.01",
-                "1.000000"
-            ],
-            [
-                "23776.70",
-                "2.500000"
-            ],
-            [
-                "23776.61",
-                "2.500000"
-            ],
-            [
-                "23776.30",
-                "2.500000"
-            ],
-            [
-                "23776.25",
-                "2.500000"
-            ],
-            [
-                "23773.70",
-                "2.000000"
-            ],
-            [
-                "23773.57",
-                "0.500000"
             ]
         ],
         "asks": [
@@ -772,106 +672,6 @@ market_pair  | string
             ],
             [
                 "23803.06",
-                "0.500000"
-            ],
-            [
-                "23803.08",
-                "0.500000"
-            ],
-            [
-                "23803.09",
-                "1.500000"
-            ],
-            [
-                "23803.10",
-                "1.500000"
-            ],
-            [
-                "23806.06",
-                "1.000000"
-            ],
-            [
-                "23806.75",
-                "0.500000"
-            ],
-            [
-                "23806.80",
-                "0.500000"
-            ],
-            [
-                "23806.81",
-                "0.500000"
-            ],
-            [
-                "23806.82",
-                "0.500000"
-            ],
-            [
-                "23806.83",
-                "0.500000"
-            ],
-            [
-                "23806.84",
-                "2.000000"
-            ],
-            [
-                "23808.02",
-                "0.500000"
-            ],
-            [
-                "23808.62",
-                "0.500000"
-            ],
-            [
-                "23808.63",
-                "0.500000"
-            ],
-            [
-                "23808.64",
-                "0.500000"
-            ],
-            [
-                "23808.66",
-                "2.500000"
-            ],
-            [
-                "23809.10",
-                "2.500000"
-            ],
-            [
-                "23809.30",
-                "2.500000"
-            ],
-            [
-                "23809.57",
-                "2.500000"
-            ],
-            [
-                "23809.72",
-                "1.000000"
-            ],
-            [
-                "23810.58",
-                "0.500000"
-            ],
-            [
-                "23810.87",
-                "1.000000"
-            ],
-            [
-                "23811.00",
-                "2.500000"
-            ],
-            [
-                "23811.09",
-                "3.000000"
-            ],
-            [
-                "23811.19",
-                "1.000000"
-            ],
-            [
-                "23811.20",
                 "0.500000"
             ]
         ],
@@ -917,23 +717,31 @@ market_pair  | string
 ```markdown
 {
     "code": 1,
-    "message": "scussess",
+    "message": "success",
     "data": [
         {
-            "trade_id": "4",
-            "price": "23809.85",
-            "timestamp": 1675321946,
-            "type": "sell",
-            "base_volume": "0.500000",
-            "target_volume": "11904.925000"
-        },
-        {
-            "trade_id": "4",
-            "price": "23809.85",
-            "timestamp": 1675321936,
+            "trade_id": "47357514",
+            "price": "23420.92",
+            "timestamp": 1675418006,
             "type": "buy",
             "base_volume": "0.500000",
-            "target_volume": "11904.925000"
+            "quote_volume": "11710.460000"
+        },
+        {
+            "trade_id": "61739823",
+            "price": "23422.58",
+            "timestamp": 1675417960,
+            "type": "sell",
+            "base_volume": "0.500000",
+            "quote_volume": "11711.290000"
+        },
+        {
+            "trade_id": "24837589",
+            "price": "23422.64",
+            "timestamp": 1675417946,
+            "type": "buy",
+            "base_volume": "0.500000",
+            "quote_volume": "11711.320000"
         }
     ],
     "success": true
@@ -950,5 +758,5 @@ price | string
 timestamp | int
 type | string
 base_volume | string
-target_volume | string
+quote_volume | string
 success   | boolen
